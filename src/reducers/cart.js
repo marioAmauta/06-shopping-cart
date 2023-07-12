@@ -62,9 +62,9 @@ export function cartReducer(state, action) {
     }
 
     case CART_ACTIONS.CLEAR_CART: {
-      updateLocalStorage(cartInitialState);
+      updateLocalStorage([]);
 
-      return cartInitialState;
+      return [];
     }
 
     default: {
