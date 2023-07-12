@@ -1,9 +1,10 @@
 import './Cart.css';
+import { PropTypes } from 'prop-types';
 import { useId } from 'react';
-import { CartIcon, ClearCartIcon } from './Icons.jsx';
+import { CartIcon, ClearCartIcon, RemoveFromCartIcon } from './Icons.jsx';
 import { useCart } from '../hooks/useCart';
 
-function CartItem({ thumbnail, title, price, quantity, addToCart, removeFromCart }) {
+function CartItem({ thumbnail, title, price, quantity, addToCart, itemDecrement, removeFromCart }) {
   return (
     <li>
       <img
@@ -14,18 +15,37 @@ function CartItem({ thumbnail, title, price, quantity, addToCart, removeFromCart
       <strong>${price}</strong>
       <footer>
         <small>Quantity: {quantity}</small>
+        <small>Total: {quantity * price}</small>
         <div>
           <button onClick={addToCart}>+</button>
-          <button onClick={removeFromCart}>-</button>
+          <button onClick={itemDecrement}>-</button>
         </div>
+        <button
+          onClick={removeFromCart}
+          style={{
+            backgroundColor: 'darkRed'
+          }}
+        >
+          <RemoveFromCartIcon />
+        </button>
       </footer>
     </li>
   );
 }
 
+CartItem.propTypes = {
+  thumbnail: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  itemDecrement: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired
+};
+
 export function Cart() {
   const cartId = useId();
-  const { cart, addToCart, removeFromCart, clearCart } = useCart();
+  const { cart, addToCart, itemDecrement, removeFromCart, clearCart } = useCart();
 
   return (
     <>
@@ -43,6 +63,14 @@ export function Cart() {
       />
 
       <aside className='cart'>
+        <p
+          style={{
+            textAlign: 'center',
+            marginBottom: '2rem'
+          }}
+        >
+          Total ${cart.reduce((acc, el) => acc + el.price * el.quantity, 0)}
+        </p>
         {cart.length === 0 ? (
           <p
             style={{
@@ -53,15 +81,12 @@ export function Cart() {
             There are no products in cart
           </p>
         ) : (
-          <ul
-            style={{
-              overflow: 'auto'
-            }}
-          >
+          <ul>
             {cart.map(product => (
               <CartItem
                 key={product.id}
                 addToCart={() => addToCart(product)}
+                itemDecrement={() => itemDecrement(product)}
                 removeFromCart={() => removeFromCart(product)}
                 {...product}
               />
@@ -70,7 +95,11 @@ export function Cart() {
         )}
 
         <div className='remove-button-container'>
-          <button onClick={clearCart}>
+          <button
+            onClick={clearCart}
+            disabled={cart.length === 0}
+            className='clear-cart-button'
+          >
             <ClearCartIcon />
           </button>
         </div>
