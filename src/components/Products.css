@@ -1,0 +1,32 @@
+.products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 2rem;
+}
+
+.products ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 0 1rem;
+}
+
+.products ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  background-color: #111;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.products ul li img {
+  border-radius: 0.3rem;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  height: 100%;
+}

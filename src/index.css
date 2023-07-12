@@ -1,0 +1,75 @@
+:root {
+  --main-background-color: #242424;
+  --main-text-color: rgba(255, 255, 255, 0.87);
+
+  --cart-width: 75%;
+  --cart-transition: 500ms;
+
+  --button-background-color: #1a1a1a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: sans-serif;
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+}
+
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border-radius: 0.3rem;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.6rem;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-background-color);
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.footer {
+  margin: 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(0.5rem);
+  color: #fff;
+  max-width: 30rem;
+  text-align: center;
+  word-break: break-all;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  position: sticky;
+  bottom: 2rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --cart-width: 30%;
+    --cart-transition: 800ms;
+  }
+}
