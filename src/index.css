@@ -2,7 +2,7 @@
   --main-background-color: #242424;
   --main-text-color: rgba(255, 255, 255, 0.87);
 
-  --cart-width: 75%;
+  --cart-width: 70%;
   --cart-transition: 500ms;
 
   --button-background-color: #1a1a1a;
@@ -69,7 +69,7 @@ button:focus-visible {
 
 @media (min-width: 48rem) {
   :root {
-    --cart-width: 30%;
+    --cart-width: 50%;
     --cart-transition: 800ms;
   }
 }
