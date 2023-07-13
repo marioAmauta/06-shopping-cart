@@ -39,9 +39,22 @@ export function Filters() {
           id={categoryFilterId}
           onChange={handleCategoryChange}
         >
-          <option value='all'>All</option>
-          <option value='laptops'>Laptops</option>
-          <option value='smartphones'>Smartphones</option>
+          {[
+            'All',
+            'Home Decoration',
+            'Laptops',
+            'Smartphones',
+            'Fragrances',
+            'Skincare',
+            'Groceries'
+          ].map((category, index) => (
+            <option
+              key={index}
+              value={category.toLowerCase()}
+            >
+              {category}
+            </option>
+          ))}
         </select>
       </div>
     </section>

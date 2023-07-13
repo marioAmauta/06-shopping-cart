@@ -9,7 +9,7 @@ import { CartProvider } from './context/cart';
 export function App() {
   const { filterProducts } = useFilters();
   const [products] = useState(initialProducts);
-  const filteredProducts = filterProducts(products.slice(0, 10));
+  const filteredProducts = filterProducts(products);
 
   return (
     <CartProvider>
