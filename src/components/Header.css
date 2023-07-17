@@ -4,11 +4,11 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding-block: 1rem;
   position: sticky;
   top: 0;
   background-color: var(--main-background-color);
   border-bottom: 1px solid var(--border-color);
+  transition: var(--cart-transition);
 }
 
 .filters-container {

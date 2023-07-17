@@ -2,10 +2,15 @@
   --main-background-color: #242424;
   --main-text-color: rgba(255, 255, 255, 0.87);
 
-  --cart-width: 70%;
-  --cart-transition: 500ms;
+  --cart-transition: 300ms;
 
   --button-background-color: #1a1a1a;
+
+  --navbar-height: 3.5rem;
+
+  --navbar-toggle-bar-width: 100%;
+  --navbar-toggle-bar-height: 0.2rem;
+  --navbar-toggle-bar-border-radius: 3rem;
 }
 
 *,
@@ -14,6 +19,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* outline: 1px solid black; */
 }
 
 body {
@@ -45,9 +51,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;

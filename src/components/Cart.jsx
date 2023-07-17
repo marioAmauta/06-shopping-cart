@@ -1,8 +1,8 @@
 import './Cart.css';
 import { PropTypes } from 'prop-types';
-import { useId } from 'react';
-import { CartIcon, ClearCartIcon, RemoveFromCartIcon } from './Icons.jsx';
+import { CartIcon, RemoveFromCartIcon } from './Icons.jsx';
 import { useCart } from '../hooks/useCart';
+import { useRef } from 'react';
 
 function CartItem({ thumbnail, title, price, quantity, addToCart, itemDecrement, removeFromCart }) {
   return (
@@ -44,42 +44,40 @@ CartItem.propTypes = {
 };
 
 export function Cart() {
-  const cartId = useId();
   const { cart, addToCart, itemDecrement, removeFromCart, clearCart } = useCart();
+
+  const cartRef = useRef(null);
 
   return (
     <>
-      <label
+      <div
         className='cart-button'
-        htmlFor={cartId}
+        onClick={() => cartRef.current.classList.add('active')}
       >
         <CartIcon />
         {cart.length}
-      </label>
-      <input
-        id={cartId}
-        type='checkbox'
-        hidden
-      />
+      </div>
+      <aside
+        className='cart'
+        ref={cartRef}
+      >
+        <header>
+          <div>
+            <button
+              onClick={clearCart}
+              disabled={cart.length === 0}
+              className='clear-cart-button'
+            >
+              Clear
+            </button>
+            <button onClick={() => cartRef.current.classList.remove('active')}>Close</button>
+          </div>
 
-      <aside className='cart'>
-        <p
-          style={{
-            textAlign: 'center',
-            marginBottom: '2rem'
-          }}
-        >
-          Total ${cart.reduce((acc, el) => acc + el.price * el.quantity, 0)}
-        </p>
+          <h2>Cart</h2>
+          <p>Total ${cart.reduce((acc, el) => acc + el.price * el.quantity, 0)}</p>
+        </header>
         {cart.length === 0 ? (
-          <p
-            style={{
-              textAlign: 'center',
-              margin: '6rem 0'
-            }}
-          >
-            There are no products in cart
-          </p>
+          <p className='no-products'>There are no products in cart</p>
         ) : (
           <ul>
             {cart.map(product => (
@@ -93,17 +91,15 @@ export function Cart() {
             ))}
           </ul>
         )}
-
-        <div className='remove-button-container'>
-          <button
-            onClick={clearCart}
-            disabled={cart.length === 0}
-            className='clear-cart-button'
-          >
-            <ClearCartIcon />
-          </button>
-        </div>
       </aside>
     </>
   );
 }
+
+Cart.propTypes = {
+  cartState: PropTypes.shape({
+    isOpen: PropTypes.bool.isRequired,
+    setIsOpen: PropTypes.func.isRequired,
+    setOtherElementOpen: PropTypes.func.isRequired
+  })
+};

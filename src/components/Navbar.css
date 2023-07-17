@@ -1,0 +1,57 @@
+.navbar {
+  background-color: inherit;
+  width: 100%;
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1rem;
+}
+
+.navbar-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.navbar-toggle::before,
+.navbar-toggle::after {
+  content: '';
+  position: absolute;
+  width: 1.6rem;
+  height: 0.125rem;
+  background-color: #fff;
+  border-radius: 0.3rem;
+}
+
+.navbar-toggle::before {
+  transform: translateY(-0.35rem);
+}
+
+.navbar-toggle::after {
+  transform: translateY(0.35rem);
+}
+
+.navbar-menu {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: -100vw;
+  transition: var(--cart-transition);
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.navbar-menu.active {
+  left: 0;
+}
